@@ -388,6 +388,7 @@ export const handler: Handlers = {
       return new Response(errorCanvas.toBuffer(), {
         headers: {
           "Content-Type": "image/png",
+          "Cache-Control": "public, max-age=31536000, immutable"
         },
       });
     }
