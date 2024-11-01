@@ -21,6 +21,7 @@ export default async function Home(req: Request) {
   return (
     <>
       <Head>
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="og:image" content={embedUrl.href} />
       </Head>
       <div class="flex min-h-screen">
