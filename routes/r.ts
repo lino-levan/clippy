@@ -313,9 +313,16 @@ function drawClippyMessage(
   };
 }
 
+const imageCache = await caches.open("image-cache");
+
 export const handler: Handlers = {
   async GET(req: Request, _ctx: FreshContext) {
     try {
+      const cachedResponse = await imageCache.match(req);
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
       // Load and cache clippy image
       if (!clippy) {
         clippy = Deno.readFileSync("./static/clippy.png");
@@ -369,12 +376,14 @@ export const handler: Handlers = {
       // Draw Clippy image
       ctx.drawImage(image, canvasWidth - 200, canvasHeight - 200, 200, 200);
 
-      return new Response(canvas.toBuffer(), {
+      const response = new Response(canvas.toBuffer(), {
         headers: {
           "Content-Type": "image/png",
           "Cache-Control": "public, max-age=31536000, immutable"
         },
       });
+      await imageCache.put(req, response.clone());
+      return response;
     } catch (error) {
       console.error("Error in handler:", error);
       // Return a simple error image
