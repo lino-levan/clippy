@@ -250,8 +250,7 @@ export const handler: Handlers = {
     const ctx = canvas.getContext("2d");
 
     // Clear canvas
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     
     // Draw the speech bubble and message
     drawClippyMessage(ctx, text, maxWidth, options);
