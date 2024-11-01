@@ -24,9 +24,9 @@ export default async function Home(req: Request) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="og:image" content={embedUrl.href} />
       </Head>
-      <div class="flex min-h-screen">
+      <div class="flex flex-col-reverse md:flex-row min-h-screen">
         {/* Sidebar */}
-        <div class="w-64 bg-gray-100 p-4 overflow-y-auto">
+        <div class="w-full md:w-64 bg-gray-100 p-4 overflow-y-auto">
           <h2 class="text-xl font-semibold mb-4">Published Images</h2>
           <div class="space-y-4">
             {publishedImages.map((image, index) => (

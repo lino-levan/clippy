@@ -23,6 +23,10 @@ interface BubbleMetrics {
 function sanitizeText(text: string): string {
   // Replace common smart quotes and dashes with basic ASCII versions
   const replacements: Record<string, string> = {
+    '‘': '\'',
+    '’': '\'',
+    '“': '"',
+    '”': '"',
     '–': '-',
     '—': '-',
     '…': '...',
