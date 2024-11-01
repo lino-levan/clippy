@@ -32,5 +32,3 @@ jobs:
           project: "clippy-image"
           entrypoint: "main.ts"
           root: "."
-          
-          
